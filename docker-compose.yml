@@ -8,12 +8,14 @@ services:
     volumes:
       - ./:/app
     environment:
-      - DBURL="mongodb+srv://mongo/gateways"
+      - DBHOST=mongo
+      - DBPORT=27017
+      - DATA=gateways
+      - WAIT=5000
   mongo:
     image: mongo
+    restart: always
     ports:
       - 27017:27017
-    volumes:
-      - mongodb:/data/db
-volumes:
-  mongodb:
+#    volumes:
+#      - mongodb:/data/db
