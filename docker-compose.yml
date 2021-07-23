@@ -8,7 +8,7 @@ services:
     volumes:
       - ./:/app
     environment:
-      - DBURL="mongodb://mongo/gateways"
+      - DBURL="mongodb+srv://mongo/gateways"
   mongo:
     image: mongo
     ports:
