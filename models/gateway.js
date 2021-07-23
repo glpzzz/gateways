@@ -14,6 +14,7 @@ module.exports = mongoose.model('Gateway', new mongoose.Schema({
     ip: {
         type: String,
         required: true,
+        unique: true,
         validate: {
             validator: function (value) {
                 return isIp.v4(value);

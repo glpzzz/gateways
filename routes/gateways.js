@@ -5,15 +5,15 @@ const Gateway = require('../models/gateway');
 
 router.get('/', async (req, res, next) => {
     try {
-        const models = await Gateway.find().populate('peripherals');
-        res.json(models);
+        const models = await Gateway.find({}, [], {sort: {name: 1}}).populate('peripherals');
+        res.status(200).json(models);
     } catch (e) {
         return res.status(500).json({message: e.message});
     }
 });
 
 router.get('/:id', findModel, async (req, res) => {
-    await res.json(res.model);
+    await res.status(200).json(res.model);
 });
 
 router.post('/', async (req, res) => {
@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.patch('/:id', findModel, async (req, res) => {
+router.put('/:id', findModel, async (req, res) => {
     if (req.body.serial != null) {
         res.model.serial = req.body.serial;
     }
@@ -42,7 +42,7 @@ router.patch('/:id', findModel, async (req, res) => {
     }
     try {
         const result = await res.model.save();
-        res.json(result);
+        res.status(200).json(result);
     } catch (e) {
         return res.status(400).json({message: e.message});
     }
@@ -51,7 +51,7 @@ router.patch('/:id', findModel, async (req, res) => {
 router.delete('/:id', findModel, async (req, res) => {
     try {
         const result = await res.model.remove();
-        res.json(result);
+        res.status(200).json(result);
     } catch (e) {
         res.status(500).json({message: e.message});
     }
@@ -60,7 +60,7 @@ router.delete('/:id', findModel, async (req, res) => {
 async function findModel(req, res, next) {
     let model = null;
     try {
-        model = await Gateway.findById(req.params.id).populate('peripherals');
+        model = await Gateway.findById(req.params.id).populate('peripherals', [], {}, {sort: {uid: 1}});
         if (model == null) {
             return res.status(404).json({message: 'Resource not found.'});
         }

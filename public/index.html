@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<main id="app" class="container pb-4">
+    <header class="border-bottom my-4 pb-3">
+        <h1 class="display-1">Gateways</h1>
+    </header>
+    <div class="row">
+        <div class="col-md-4">
+            <button class="btn btn-success mb-3" @click="newGateway">New Gateway</button>
+            <ul class="list-group pb-3">
+                <li v-for="g in gateways" :key="g._id" class="list-group-item">
+                    <a href="#" @click="showGateway(g)">{{g.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <section v-if="current" @submit.prevent="saveGateway(current)" class="card">
+                <h2 class="card-header">{{current.name}}'s Properties</h2>
+                <form action="/gateways" class="card-body mb-4">
+                    <div class="mb-3">
+                        <label for="current-name" class="form-label">Name</label>
+                        <input id="current-name" class=form-control type="text" v-model="current.name"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="current-serial" class="form-label">Serial</label>
+                        <input id="current-serial" class=form-control type="text" v-model="current.serial"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="current-ip" class="form-label">IP</label>
+                        <input id="current-ip" class=form-control type="text" v-model="current.ip"/>
+                    </div>
+                    <input id="btn-save-gateway" class="btn btn-primary" type="submit" value="Save"/>
+                    <button v-if="current._id" type="button" class="btn btn-danger" @click="deleteGateway(current)">
+                        Delete
+                    </button>
+                </form>
+                <div v-if="current._id">
+                    <form action="/peripherals" v-if="currentPeripheral"
+                          @submit.prevent="savePeripheral(currentPeripheral)"
+                          class="card-body border-top">
+
+                        <h3 class="card-title">
+                            <span v-if="currentPeripheral._id">Update Peripheral</span>
+                            <span v-else>New Peripheral</span>
+                            <button @click="currentPeripheral=null" class="btn btn-link ml-4">Cancel</button>
+                        </h3>
+
+                        <div class="mb-3">
+                            <label for="currentPeripheral-uid" class="form-label">UID</label>
+                            <input id="currentPeripheral-uid" class=form-control type="number"
+                                   v-model="currentPeripheral.uid"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="currentPeripheral-vendor" class="form-label">Vendor</label>
+                            <input id="currentPeripheral-vendor" class=form-control type="text"
+                                   v-model="currentPeripheral.vendor"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="currentPeripheral-status" class="form-label">Status</label>
+                            <select v-model="currentPeripheral.status" id="currentPeripheral-status"
+                                    class="form-select">
+                                <option value="online">Online</option>
+                                <option value="offline">Offline</option>
+                            </select>
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Save"/>
+                        <button v-if="currentPeripheral._id" type="button" class="btn btn-danger"
+                                @click="deletePeripheral(currentPeripheral)">Delete
+                        </button>
+                    </form>
+                    <template v-else>
+                        <h3 class="px-3">Peripherals</h3>
+                        <table class="table table-bordered mb-0">
+                            <colgroup>
+                                <col style="width:30%">
+                                <col style="width:30%">
+                                <col style="width:30%">
+                                <col style="width:10%">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>UID</th>
+                                <th>Vendor</th>
+                                <th>Status</th>
+                                <th>
+                                    <button @click="newPeripheral" class="btn btn-sm btn-success w-100">Add</button>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="p in current.peripherals" :key="p._id">
+                                <td>{{p.uid}}</td>
+                                <td>{{p.vendor}}</td>
+                                <td>{{p.status}}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary w-100" @click="showPeripheral(p)">Edit
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </template>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
