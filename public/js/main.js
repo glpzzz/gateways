@@ -6,9 +6,11 @@ var app = new Vue({
         current: null,
         currentPeripheral: null,
         gateways: [],
+        isLoading: false,
     },
     methods: {
         async list() {
+            this.isLoading = true;
             try {
                 const response = await fetch(baseUrl + '/gateways');
                 const data = await response.json();
@@ -21,8 +23,10 @@ var app = new Vue({
                 alert(e);
                 console.error(e);
             }
+            this.isLoading = false;
         },
         async showGateway(gateway) {
+            this.isLoading = true;
             try {
                 const response = await fetch(baseUrl + '/gateways/' + gateway._id);
                 const data = await response.json();
@@ -35,6 +39,7 @@ var app = new Vue({
                 alert(e);
                 console.error(e);
             }
+            this.isLoading = false;
         },
         newGateway() {
             this.current = {
@@ -46,6 +51,7 @@ var app = new Vue({
         },
         async saveGateway(gateway) {
             console.log('START saveGateway');
+            this.isLoading = true;
             try {
                 if (gateway._id !== undefined) {
                     const response = await fetch(baseUrl + '/gateways/' + gateway._id, {
@@ -82,10 +88,12 @@ var app = new Vue({
                 alert(e);
                 console.error(e);
             }
+            this.isLoading = false;
             console.log('END saveGateway');
         },
         async deleteGateway(gateway) {
             if (confirm('Delete gateway?')) {
+                this.isLoading = true;
                 try {
                     const response = await fetch(baseUrl + '/gateways/' + gateway._id, {
                         'method': 'delete',
@@ -101,6 +109,7 @@ var app = new Vue({
                     alert(e);
                     console.error(e);
                 }
+                this.isLoading = false;
             }
         },
         newPeripheral() {
@@ -112,6 +121,7 @@ var app = new Vue({
             };
         },
         async showPeripheral(peripheral) {
+            this.isLoading = true;
             try {
                 const response = await fetch(baseUrl + '/peripherals/' + peripheral._id);
                 const data = await response.json();
@@ -124,9 +134,11 @@ var app = new Vue({
                 alert(e);
                 console.error(e);
             }
+            this.isLoading = false;
         },
         async savePeripheral(peripheral) {
             console.log('START savePeripheral');
+            this.isLoading = true;
             try {
                 if (peripheral._id !== undefined) {
                     const response = await fetch(baseUrl + '/peripherals/' + peripheral._id, {
@@ -162,10 +174,12 @@ var app = new Vue({
                 alert(e);
                 console.error(e);
             }
+            this.isLoading = false;
             console.log('END savePeripheral');
         },
         async deletePeripheral(peripheral) {
             if (confirm('Delete peripheral?')) {
+                this.isLoading = true;
                 try {
                     const response = await fetch(baseUrl + '/peripherals/' + peripheral._id, {
                         method: 'delete',
@@ -181,6 +195,7 @@ var app = new Vue({
                     alert(e);
                     console.error(e);
                 }
+                this.isLoading = false;
             }
         }
     },
