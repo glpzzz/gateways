@@ -98,7 +98,8 @@
                         </button>
                     </form>
                     <template v-else>
-                        <h3 class="px-3">Peripherals</h3>
+                        <h3 class="mx-3">Peripherals</h3>
+
                         <table class="table table-bordered mb-0">
                             <colgroup>
                                 <col style="width:30%">
@@ -111,8 +112,11 @@
                                 <th>UID</th>
                                 <th>Vendor</th>
                                 <th>Status</th>
-                                <th>
-                                    <button @click="newPeripheral" class="btn btn-sm btn-success w-100">Add</button>
+                                <th class="text-center">
+                                    <button v-if="current.peripherals.length < 10" @click="newPeripheral"
+                                            class="btn btn-sm btn-success w-100">Add
+                                    </button>
+                                    <span v-else class="badge bg-danger">FULL</span>
                                 </th>
                             </tr>
                             </thead>
