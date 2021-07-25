@@ -1,5 +1,10 @@
 # Gateways
 
+![test workflow](https://github.com/glpzzz/gateways/actions/workflows/test.yml/badge.svg)
+![GitHub top language](https://img.shields.io/github/languages/top/glpzzz/gateways?style=flat)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/glpzzz/gateways?style=flat)
+![Lines of code](https://img.shields.io/tokei/lines/github/glpzzz/gateways?style=flat)
+
 ## Description 
 
 This sample project is managing gateways - master devices that control multiple peripheral devices. 
@@ -34,18 +39,21 @@ Each peripheral device has:
 
 ### Production environment
 
-1. Run `docker-compose up`
-2. The app should be ready on http://localhost
+1. Rename the file `.env.template` to `.env` and adjust the variables values properly
+2. Run `docker-compose up`
+3. The app should be ready on http://localhost
 
 ### Development environment
 
-1. Execute `npm install` to get all dependencies including dev ones
-2. Run `docker-compose -f docker-compose.dev.yml up` which mounts a volume so you can make changes and the container 
+1. Rename the file `.env.template` to `.env` and adjust the variables values properly
+2. Execute `npm install` to get all dependencies including dev ones
+3. Run `docker-compose -f docker-compose.dev.yml up` which mounts a volume so you can make changes and the container 
 stays in sync.
-3. The app should be ready on http://localhost
+4. The app should be ready on http://localhost
 
 ### Testing environment
-1. Run `docker-compose -f docker-compose.test.yml up`
+1. Rename the file `.env.template` to `.env-test` and adjust the variables values properly
+2. Run `docker-compose -f docker-compose.test.yml up`
 
 #### Github action
 A Github actions is configured to be executed on every push so tests must be passed for the push (or PR) to be 

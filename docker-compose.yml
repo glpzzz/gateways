@@ -6,11 +6,8 @@ services:
     command: npm run start
     ports:
       - 80:3000
-    environment:
-      - DBHOST=mongo
-      - DBPORT=27017
-      - DATA=gateways
-      - WAIT=5000
+    env_file:
+      - .env
     depends_on:
       - mongo
   mongo:

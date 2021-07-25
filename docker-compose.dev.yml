@@ -8,11 +8,8 @@ services:
       - 80:3000
     volumes:
       - ./:/app
-    environment:
-      - DBHOST=mongo
-      - DBPORT=27017
-      - DATA=gateways-dev
-      - WAIT=5000
+    env_file:
+      - .env
     depends_on:
       - mongo
   mongo:
