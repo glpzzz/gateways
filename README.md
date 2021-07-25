@@ -1,5 +1,7 @@
 # Gateways
 
+![test workflow](https://github.com/glpzzz/gateways/.github/workflows/test.yml/badge.svg)
+
 ## Description 
 
 This sample project is managing gateways - master devices that control multiple peripheral devices. 
