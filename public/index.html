@@ -48,7 +48,7 @@
             <section v-if="current" @submit.prevent="saveGateway(current)" class="card">
                 <header class="card-header d-flex justify-content-between">
                     <h2 class="h5 mb-0">{{current.name}}'s Properties</h2>
-                    <button @click="closeGateway" class="btn btn-sm btn-secondary py-0">×</button>
+                    <button @click="closeGateway" class="btn btn-sm btn-danger py-0">×</button>
                 </header>
 
                 <form action="/gateways" class="card-body mb-4">
