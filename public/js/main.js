@@ -49,6 +49,9 @@ var app = new Vue({
                 ip: '',
             }
         },
+        closeGateway() {
+            this.current = null;
+        },
         async saveGateway(gateway) {
             console.log('START saveGateway');
             this.isLoading = true;

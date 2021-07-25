@@ -37,14 +37,20 @@
         <div class="col-md-4">
             <button class="btn btn-success mb-3" @click="newGateway">New Gateway</button>
             <ul class="list-group pb-3">
-                <li v-for="g in gateways" :key="g._id" class="list-group-item">
-                    <a href="#" @click="showGateway(g)">{{g.name}}</a>
+                <li v-for="g in gateways" :key="g._id"
+                    class="list-group-item d-flex justify-content-between align-items-start">
+                    <a @click="showGateway(g)" href="#" class="ms-2 me-auto">{{g.name}}</a>
+                    <span class="badge bg-primary rounded-pill">{{g.peripherals.length}}</span>
                 </li>
             </ul>
         </div>
         <div class="col-md-8">
             <section v-if="current" @submit.prevent="saveGateway(current)" class="card">
-                <h2 class="card-header">{{current.name}}'s Properties</h2>
+                <header class="card-header d-flex justify-content-between">
+                    <h2 class="h5 mb-0">{{current.name}}'s Properties</h2>
+                    <button @click="closeGateway" class="btn btn-sm btn-secondary py-0">×</button>
+                </header>
+
                 <form action="/gateways" class="card-body mb-4">
                     <div class="mb-3">
                         <label for="current-name" class="form-label">Name</label>
@@ -102,13 +108,15 @@
 
                         <table class="table table-bordered mb-0">
                             <colgroup>
-                                <col style="width:30%">
+                                <col style="width: 5%">
                                 <col style="width:30%">
                                 <col style="width:30%">
                                 <col style="width:10%">
+                                <col style="width:5%">
                             </colgroup>
                             <thead>
                             <tr>
+                                <th>#</th>
                                 <th>UID</th>
                                 <th>Vendor</th>
                                 <th>Status</th>
@@ -121,7 +129,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="p in current.peripherals" :key="p._id">
+                            <tr v-for="(p, index) in current.peripherals" :key="p._id">
+                                <td>{{index+1}}</td>
                                 <td>{{p.uid}}</td>
                                 <td>{{p.vendor}}</td>
                                 <td>{{p.status}}</td>
