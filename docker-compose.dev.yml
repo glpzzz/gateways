@@ -4,10 +4,13 @@ services:
     build: .
     ports:
       - 80:3000
+    volumes:
+      - ./:/app
     environment:
+      - NODESCRIPT=dev
       - DBHOST=mongo
       - DBPORT=27017
-      - DATA=gateways
+      - DATA=gateways-dev
       - WAIT=5000
   mongo:
     image: mongo
