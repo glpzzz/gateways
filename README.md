@@ -1,6 +1,9 @@
 # Gateways
 
 ![test workflow](https://github.com/glpzzz/gateways/actions/workflows/test.yml/badge.svg)
+![GitHub top language](https://img.shields.io/github/languages/top/glpzzz/gateways?style=flat)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/glpzzz/gateways?style=flat)
+![Lines of code](https://img.shields.io/tokei/lines/github/glpzzz/gateways?style=flat)
 
 ## Description 
 
