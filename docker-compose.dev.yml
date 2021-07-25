@@ -1,13 +1,14 @@
 version: '3'
 services:
   node:
-    build: .
+    build:
+      context: .
+      args: [ "NODESCRIPT=dev" ]
     ports:
       - 80:3000
     volumes:
       - ./:/app
     environment:
-      - NODESCRIPT=dev
       - DBHOST=mongo
       - DBPORT=27017
       - DATA=gateways-dev

@@ -1,11 +1,12 @@
 FROM node:14.17-alpine
 
 ARG NODESCRIPT=start
-ENV NODESCRIPT $NODESCRIPT
+
+RUN echo $NODESCRIPT
 
 WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install
 COPY . .
 
-CMD ["npm run", "${NODESCRIPT}"]
+CMD ["npm", "run", "${NODESCRIPT}"]
