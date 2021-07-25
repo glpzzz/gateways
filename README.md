@@ -1,6 +1,6 @@
 # Gateways
 
-![test workflow](https://github.com/glpzzz/gateways/.github/workflows/test.yml/badge.svg)
+![test workflow](https://github.com/glpzzz/gateways/actions/workflows/test.yml/badge.svg)
 
 ## Description 
 
