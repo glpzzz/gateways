@@ -123,8 +123,8 @@ describe('Peripherals', () => {
     /**
      * Test the /PUT/:id route
      */
-    describe('/PUT/:id gateway', () => {
-        it('it should UPDATE a gateway given the id', (done) => {
+    describe('/PUT/:id peripheral', () => {
+        it('it should UPDATE a peripheral given the id', (done) => {
             let gateway = new Gateway({name: "Gateway 1", serial: "111111", ip: "192.168.0.1"});
             gateway.save((err, gateway) => {
                 let peripheral = new Peripheral({
@@ -151,8 +151,8 @@ describe('Peripherals', () => {
     /**
      * Test the /DELETE/:id route
      */
-    describe('/DELETE/:id gateway', () => {
-        it('it should DELETE a gateway given the id', (done) => {
+    describe('/DELETE/:id peripheral', () => {
+        it('it should DELETE a peripheral given the id', (done) => {
             let gateway = new Gateway({name: "Gateway 1", serial: "111111", ip: "192.168.0.1"});
             gateway.save((err, gateway) => {
                 let peripheral = new Peripheral({
