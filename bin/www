@@ -8,6 +8,8 @@ const DBPORT = process.env.DBPORT || '27017';
 const DATA = process.env.DATA || 'gateways';
 const WAIT = parseInt(process.env.WAIT || 5000, 10);
 
+console.log(WAIT);
+
 let connectionUrl = `mongodb://${DBHOST}:${DBPORT}/${DATA}`;
 console.log(`CONNECTION URL: ${connectionUrl}`);
 
@@ -24,7 +26,9 @@ setTimeout(function () {
     });
     const db = mongoose.connection;
     db.on('error', (error) => console.error(error));
-    db.once('open', () => console.log('Database connected'));
+    db.once('open', () => {
+        console.log('Database connected')
+    });
 }, WAIT);
 
 /**

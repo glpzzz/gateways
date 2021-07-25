@@ -3,7 +3,7 @@ services:
   node:
     build:
       context: .
-      args: [ "NODESCRIPT=dev" ]
+    command: npm run dev
     ports:
       - 80:3000
     volumes:
@@ -13,6 +13,8 @@ services:
       - DBPORT=27017
       - DATA=gateways-dev
       - WAIT=5000
+    depends_on:
+      - mongo
   mongo:
     image: mongo
     restart: always

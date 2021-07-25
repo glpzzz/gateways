@@ -3,14 +3,16 @@ services:
   node:
     build:
       context: .
-      args: [ "NODESCRIPT=test" ]
+    command: npm run test
     ports:
       - 80:3000
     environment:
-      - DBHOST:mongo
-      - DBPORT:27017
-      - DATA:gateways-test
-      - WAIT:5000
+      - DBHOST=mongo
+      - DBPORT=27017
+      - DATA=gateways-test
+      - WAIT=5000
+    depends_on:
+      - mongo
   mongo:
     image: mongo
     restart: always
