@@ -24,4 +24,5 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
       - run: npm install
+      - run: cp .env.template .env-test
       - run: npm run test

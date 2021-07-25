@@ -53,7 +53,7 @@ stays in sync.
 
 ### Testing environment
 1. Rename the file `.env.template` to `.env-test` and adjust the variables values properly
-2. Run `docker-compose -f docker-compose.test.yml up`
+2. Run `docker-compose -f docker-compose.test.yml run node npm run test`
 
 #### Github action
 A Github actions is configured to be executed on every push so tests must be passed for the push (or PR) to be 
