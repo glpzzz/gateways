@@ -35,14 +35,21 @@
     </header>
     <div class="row">
         <div class="col-md-4">
-            <button class="btn btn-success mb-3" @click="newGateway">New Gateway</button>
-            <ul class="list-group pb-3">
-                <li v-for="g in gateways" :key="g._id"
-                    class="list-group-item d-flex justify-content-between align-items-start">
-                    <a @click="showGateway(g)" href="#" class="ms-2 me-auto">{{g.name}}</a>
-                    <span class="badge bg-primary rounded-pill">{{g.peripherals.length}}</span>
-                </li>
-            </ul>
+
+            <div class="card">
+                <h2 class="h5 card-header">Gateways</h2>
+                <ul class="list-group">
+                    <li v-for="g in gateways" :key="g._id"
+                        class="list-group-item d-flex justify-content-between align-items-start">
+                        <a @click="showGateway(g)" href="#" class="ms-2 me-auto">{{g.name}}</a>
+                        <span class="badge bg-primary rounded-pill">{{g.peripherals.length}}</span>
+                    </li>
+                </ul>
+                <div class="card-footer">
+                    <button class="btn btn-success w-100" @click="newGateway">New Gateway</button>
+                </div>
+            </div>
+
         </div>
         <div class="col-md-8">
             <section v-if="current" @submit.prevent="saveGateway(current)" class="card">
