@@ -1,6 +1,6 @@
 FROM node:14.17-alpine
+
 WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
-RUN npm install
+RUN npm ci --verbose
 COPY . .
-CMD ["npm", "start"]
